@@ -2,7 +2,7 @@
 name: filing-comprehensive-review
 description: 对 A 股并购重组（重大资产重组、发行股份购买资产、重组上市等）申报文件进行可追溯复核，覆盖算术与会计勾稽、跨文件及加期一致性、底稿穿透、问询回复逻辑、发行方案与业绩承诺复算、外部来源核验和 Word 批注交付。IPO 和再融资申报文件、纯语言质量审查或仅做格式整理时，不使用本 Skill。
 metadata:
-  cn_name: 重组申报文件全面复核
+  cn_name: 重组文件全面复核
   skill_id: filing-comprehensive-review
   version: 3.2.0
   category: 合规风控
@@ -30,7 +30,7 @@ metadata:
   legacy_name: 申报文件全面复核
 ---
 
-# 重组申报文件全面复核
+# 重组文件全面复核
 
 目标不是"多找错"，而是在明确范围内交付**可追溯、低误报、可复核、可续核**的问题清单和 Word 批注。主文件只保留流程、底线和路由；执行细节按需读取 `references/`。
 
