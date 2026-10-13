@@ -4,7 +4,7 @@ description: 对 A 股并购重组（重大资产重组、发行股份购买资�
 metadata:
   cn_name: 重组文件全面复核
   skill_id: filing-comprehensive-review
-  version: 3.2.0
+  version: 3.3.0
   category: 合规风控
   author: agent_created
   capabilities:
@@ -109,7 +109,7 @@ metadata:
 6. **外部来源**：按来源层级核验工商、法规、案号、合规、年报和同业数据；记录反向证据和无法核验原因。
 7. **文字与格式**：主体名称、定义、单位、日期、标点、段落和表格表述一致性。“公司”通常指“上市公司”，注意不要将标的公司简称为“公司”；结合释义和上下文核查主体指代。区分“标的公司”和“标的资产”。“标的资产”应指代标的公司的股权，而不是指代标的公司。
 8. **长文档**：程序化基线优先，再按章节或问题分段语义复核；子代理直接读取原始文件，不读主代理摘要。
-9. **披露依据与业务实质**：按文件阶段和事实确认程度审查披露，核对章节功能、评价措辞、主体及术语、图示和业务安排；从业务实质识别潜在问题并穿透核查。具体方法见 [references/disclosure-review-methods.md](references/disclosure-review-methods.md)。
+9. **披露依据与业务实质**：按文件阶段和事实确认程度审查披露，核对章节功能、评价措辞、主体及术语、图示和业务安排。通用方法见 [references/disclosure-review-methods.md](references/disclosure-review-methods.md)；交易主体、历史沿革、实施程序、合同条件、权属瑕疵、资金实质、财务因果、估值预测、募集资金、外部比较及风险承诺的支撑检查见 [references/transaction-substance-review.md](references/transaction-substance-review.md)。
 
 按需读取：
 - [references/table-arithmetic.md](references/table-arithmetic.md)
@@ -200,6 +200,7 @@ metadata:
 | 26 号准则和 ECM | `rule26-checklist.md`、`ecm-legal-disclosure.md` |
 | 格式与文字 | `format-consistency.md`、`text-errors.md` |
 | 披露阶段、业务实质、协议联动及批注核验 | `disclosure-review-methods.md` |
+| 交易关系、权利义务、财务因果及估值预测支撑 | `transaction-substance-review.md` |
 | 长文档 | `long-doc-strategy.md` |
 | 元审计 | `meta-audit.md` |
 | 修订后继续复核 | `re-review.md` |
