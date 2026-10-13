@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "evidence-ledger.schema.json",
+  "title": "Evidence Ledger",
+  "type": "object",
+  "required": ["claims", "sources", "evidence"],
+  "additionalProperties": true,
+  "properties": {
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "claim_type", "statement", "status", "source_ids", "evidence_ids"],
+        "additionalProperties": true,
+        "properties": {
+          "id": {"type": "string", "pattern": "^CLM-[0-9]{4,}$"},
+          "claim_type": {"enum": ["numeric", "legal", "business", "forecast", "forward_looking", "opinion", "format"]},
+          "statement": {"type": "string", "minLength": 1},
+          "entity": {"type": ["string", "null"]},
+          "metric": {"type": ["string", "null"]},
+          "period": {"type": ["string", "null"]},
+          "scope": {"type": ["string", "null"]},
+          "value": {"type": ["number", "string", "null"]},
+          "unit": {"type": ["string", "null"]},
+          "currency": {"type": ["string", "null"]},
+          "status": {"enum": ["CONFIRMED", "CANDIDATE", "PASS", "UNVERIFIABLE", "NOT_IN_SCOPE"]},
+          "location": {"type": ["string", "null"]},
+          "source_ids": {"type": "array", "items": {"type": "string", "pattern": "^SRC-[0-9]{4,}$"}},
+          "evidence_ids": {"type": "array", "items": {"type": "string", "pattern": "^EVD-[0-9]{4,}$"}},
+          "unverifiable_reason": {"type": ["string", "null"]},
+          "note": {"type": "string"}
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "source_type", "tier", "title", "locator"],
+        "additionalProperties": true,
+        "properties": {
+          "id": {"type": "string", "pattern": "^SRC-[0-9]{4,}$"},
+          "source_type": {"enum": ["working_paper", "filing", "comparison", "regulation", "official", "professional", "media", "other"]},
+          "tier": {"enum": ["AUTHORITY", "OFFICIAL", "PROFESSIONAL", "MEDIA", "OTHER"]},
+          "title": {"type": "string", "minLength": 1},
+          "publisher": {"type": ["string", "null"]},
+          "file_or_url": {"type": ["string", "null"]},
+          "locator": {"type": "string", "minLength": 1},
+          "publish_date": {"type": ["string", "null"]},
+          "access_date": {"type": ["string", "null"]},
+          "sha256": {"type": ["string", "null"]},
+          "language": {"type": ["string", "null"]},
+          "independent": {"type": ["boolean", "null"]},
+          "note": {"type": "string"}
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "claim_id", "source_id", "relation", "excerpt", "locator", "status"],
+        "additionalProperties": true,
+        "properties": {
+          "id": {"type": "string", "pattern": "^EVD-[0-9]{4,}$"},
+          "claim_id": {"type": "string", "pattern": "^CLM-[0-9]{4,}$"},
+          "source_id": {"type": "string", "pattern": "^SRC-[0-9]{4,}$"},
+          "relation": {"enum": ["support", "refute", "context", "duplicate"]},
+          "excerpt": {"type": "string", "minLength": 1},
+          "locator": {"type": "string", "minLength": 1},
+          "independent": {"type": ["boolean", "null"]},
+          "status": {"enum": ["CONFIRMED", "CANDIDATE", "PASS", "UNVERIFIABLE", "NOT_IN_SCOPE"]},
+          "note": {"type": "string"}
+        }
+      }
+    }
+  }
+}
