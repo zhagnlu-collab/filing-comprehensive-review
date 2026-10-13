@@ -147,7 +147,79 @@ def find_col(headers, keyword):
 
 **铁律**：批量验算发现"合计≠分项和"或"列错位"时，先用 `build_logical_grid` 展开为逻辑列网格，确认真实列结构后再定性，禁止直接采信 `row.cells` 的友好视图。
 
-## 5. Excel 底稿读取（openpyxl，托管 python）
+## 5. 图片与图形载体的提取与定位（必做，不得跳过）
+
+> 结构图、关系图、流程图承载的往往是关键比例与主体数据。**只统计图片数量而不提取内容，等于该载体零覆盖。** 解析阶段必须产出 `kind='image'` 的块，把图当作与段落、表格并列的第三类载体。
+
+```python
+import os, zipfile
+import xml.etree.ElementTree as ET
+
+W = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main'
+R = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships'
+A = 'http://schemas.openxmlformats.org/drawingml/2006/main'
+V = 'urn:schemas-microsoft-com:vml'
+
+def imgs_of(p_el):
+    """段落内嵌图片的 rId（DrawingML 与 VML 两种写法都要覆盖）"""
+    rids = []
+    for blip in p_el.iter('{%s}blip' % A):
+        rid = blip.get('{%s}embed' % R)
+        if rid:
+            rids.append(rid)
+    for im in p_el.iter('{%s}imagedata' % V):
+        rid = im.get('{%s}id' % R)
+        if rid:
+            rids.append(rid)
+    return rids
+
+def walk_with_images(path, outdir):
+    """按文档顺序遍历 body，返回 [(kind, text, [media...])]，并把图片导出到 outdir"""
+    z = zipfile.ZipFile(path)
+    z.extractall(outdir)
+    doc = ET.parse(os.path.join(outdir, 'word', 'document.xml'))
+    rels = ET.parse(os.path.join(outdir, 'word', '_rels', 'document.xml.rels'))
+    rmap = {r.get('Id'): r.get('Target') for r in rels.getroot()}
+    body = doc.getroot().find('{%s}body' % W)
+
+    seq = []
+    last_text = ''                      # 用于给图片打"上文标签"
+    for child in body:
+        tag = child.tag
+        if tag == '{%s}p' % W:
+            txt = ''.join(t.text or '' for t in child.iter('{%s}t' % W)).strip()
+            media = [os.path.basename(rmap.get(r, r)) for r in imgs_of(child)]
+            if media:
+                seq.append(('image', last_text, media))   # 图：附带前一段文本
+            if txt:
+                seq.append(('p', txt, []))
+                last_text = txt
+        elif tag == '{%s}tbl' % W:
+            seq.append(('table', '', []))
+    return seq
+
+# 用法：遍历 seq，对 kind=='image' 且上文命中
+# 结构图|关系图|示意图|流程图|股权结构|产权控制关系|组织架构
+# 的条目，必须逐张放大识读并纳入比对。
+```
+
+### 5.1 逐张识读（放大裁切）
+
+```python
+from PIL import Image
+im = Image.open('figs/xxx.png')
+w, h = im.size
+# 长图分段放大，避免缩放后文字不可辨
+top = im.crop((0, 0, w, int(h*0.6)))
+top = top.resize((top.width*2, top.height*2), Image.LANCZOS)
+top.save('figs/xxx-top.png')        # 再逐张读取识认
+```
+
+### 5.2 每层合计自检
+
+识读时逐层验算：**每个层级各主体比例之和应等于 100.00%**（±0.01 为舍入尾差）。不足即说明图内遗漏了主体或数值有笔误，须回工商登记核验后出 finding。
+
+## 6. Excel 底稿读取（openpyxl，托管 python）
 
 ```python
 import openpyxl
