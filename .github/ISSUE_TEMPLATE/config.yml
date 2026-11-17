@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 使用与安装讨论
+    url: https://github.com/zhagnlu-collab/filing-comprehensive-review/discussions
+    about: 安装、适用范围、使用方法和一般性问题
+  - name: 私密安全报告
+    url: https://github.com/zhagnlu-collab/filing-comprehensive-review/security/advisories/new
+    about: 报告客户材料、密钥、未公开信息或其他敏感安全问题

@@ -1,0 +1,59 @@
+name: 功能建议
+description: 建议新增复核能力、交付格式或工程改进
+title: "[Feature] "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 要解决的问题
+      description: 请说明当前复核流程的痛点、适用场景和影响范围。
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 建议方案
+      description: 描述期望行为、输入输出和可能的实现方式。
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: 涉及环节
+      multiple: true
+      options:
+        - 结构锚定与文档解析
+        - 数值复算与会计勾稽
+        - 跨文件 / 加期 / 版本一致性
+        - 底稿穿透
+        - 问询回复与披露逻辑
+        - 交易方案与业绩承诺
+        - 外部来源核验
+        - Excel 问题清单
+        - Word 批注
+        - HTML 报告与 Schema
+        - 文档与测试
+    validations:
+      required: true
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: 兼容性与影响
+      description: 是否影响既有口径、交付结构、Schema、脚本参数或历史成果？
+    validations:
+      required: false
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 已考虑的替代方案
+    validations:
+      required: false
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: 安全确认
+      options:
+        - label: 本建议不包含真实项目材料、客户信息、个人信息或未公开交易信息
+          required: true

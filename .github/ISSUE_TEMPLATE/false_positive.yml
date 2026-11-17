@@ -1,0 +1,52 @@
+name: 误报 / 漏报反馈
+description: 反馈复核规则误报、漏报或证据强度不当
+title: "[Review Rule] "
+labels:
+  - review-rule
+body:
+  - type: markdown
+    attributes:
+      value: |
+        本模板只接受虚构数据或已充分脱敏的最小样例。请勿上传真实申报文件或底稿。
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: 问题类型
+      options:
+        - 误报
+        - 漏报
+        - 证据状态判断不当
+        - 影响等级判断不当
+        - 不可比清单处理不当
+        - 交付物表述不当
+        - 其他
+    validations:
+      required: true
+  - type: textarea
+    id: rule
+    attributes:
+      label: 涉及的规则或文件
+      description: 提供章节、规则编号或文件路径。
+    validations:
+      required: true
+  - type: textarea
+    id: sample
+    attributes:
+      label: 脱敏最小样例
+      description: 使用虚构主体、虚构数字或不可反推的片段说明问题。
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望判定及依据
+      description: 说明为什么应当报出、撤回、降级或改为不可比。
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: 安全确认
+      options:
+        - label: 我已删除真实项目材料、客户信息和个人敏感信息
+          required: true

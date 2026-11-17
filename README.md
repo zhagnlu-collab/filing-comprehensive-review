@@ -199,3 +199,17 @@ filing-comprehensive-review/
 - 不构成法定审计或法律意见，发现事项仍须由项目组或相应专业机构独立验证。
 
 详细执行要求见 [SKILL.md](SKILL.md)。
+
+## 十一、参与贡献
+
+欢迎通过 Issue、Discussion 和 Pull Request 改进本 Skill。外部贡献者请在 Fork 中修改并发起 PR，维护者审核通过后合并；`main` 分支不接受未经审核的直接推送。
+
+- 贡献流程、材料脱敏要求和本地验证方式见 [CONTRIBUTING.md](CONTRIBUTING.md)。
+- 提交前请运行 `python3 scripts/validate_skill.py`。
+- 安全问题、客户材料或敏感数据风险请按 [SECURITY.md](SECURITY.md) 私下报告。
+- 参与讨论即表示同意遵守 [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)。
+- 请勿在 Issue、PR、日志或测试文件中提交真实项目底稿、客户信息、个人信息或未公开交易信息。
+
+## 十二、许可证
+
+本仓库目前未添加 `LICENSE` 文件，公开可见不构成开源许可或再分发授权。许可证确定前，请勿默认可以自由再分发或用于其他项目。

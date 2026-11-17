@@ -1,0 +1,56 @@
+name: 缺陷报告
+description: 报告脚本、文档解析、复核流程或交付物校验问题
+title: "[Bug] "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请勿上传真实项目底稿或客户材料。使用虚构数据或最小脱敏样例说明问题。
+  - type: textarea
+    id: summary
+    attributes:
+      label: 问题概述
+      description: 请描述预期行为与实际行为。
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 脱敏复现步骤
+      description: 提供最小、可重复的步骤和虚构样例。
+      placeholder: |
+        1. 准备脱敏文件 ...
+        2. 运行 ...
+        3. 观察到 ...
+    validations:
+      required: true
+  - type: textarea
+    id: affected
+    attributes:
+      label: 受影响文件或功能
+      description: 例如表格锚定、跨文件核对、Excel 问题清单、Word 批注、HTML 报告或 Schema 校验。
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: 运行环境
+      description: 请提供操作系统、Python 版本、Codex/Office 版本和相关依赖；不要填写账号或密钥。
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 脱敏日志或截图
+      description: 仅提供定位问题所需的最小信息。
+    validations:
+      required: false
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: 安全确认
+      options:
+        - label: 我已删除真实项目材料、客户信息、个人信息和本机绝对路径
+          required: true
