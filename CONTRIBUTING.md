@@ -69,4 +69,4 @@ python3 scripts/validate_skill.py
 
 ## 许可证说明
 
-本仓库目前未添加 `LICENSE`。在许可证明确前，提交贡献仅表示同意维护者在本仓库内审查、合并、展示和维护该贡献；这不构成对其他使用、复制或再分发方式的额外授权。
+本项目采用 [MIT License](LICENSE)。除非另有明确书面约定，提交 Pull Request 即表示同意该贡献按 MIT License 授权并随项目分发。
