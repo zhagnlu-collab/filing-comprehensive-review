@@ -208,7 +208,7 @@ filing-comprehensive-review/
 
 打开 `https://github.com/zhagnlu-collab/filing-comprehensive-review`，点击右上角 **Fork**。
 
-### 2. 下载自己的副本
+### 2. 下载自己的 Fork
 
 打开终端，运行：
 
@@ -223,22 +223,31 @@ cd filing-comprehensive-review
 git switch -c my-change
 ```
 
-### 4. 修改文件
+### 4. 复制 ZIP 中改过的文件
 
-用编辑器打开项目，修改需要的文件。
+在访达或文件资源管理器中同时打开：
+
+- ZIP 解压后的修改版文件夹；
+- 刚刚下载的 `filing-comprehensive-review` 文件夹。
+
+把 AI Agent 改过的文件按原目录结构复制到 `filing-comprehensive-review` 文件夹中。
+
+只复制修改过的文件，不要复制 `.env`、密钥、缓存、日志或临时文件。
 
 ### 5. 本地检查
 
 ```bash
+git status
 python3 scripts/validate_skill.py
 ```
+
+`git status` 会显示刚才复制进来的修改。
 
 看到 `Skill contribution validation passed.` 就表示检查通过。
 
 ### 6. 提交并上传
 
 ```bash
-git status
 git add .
 git commit -m "我的修改说明"
 git push -u origin my-change
