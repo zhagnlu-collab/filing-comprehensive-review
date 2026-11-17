@@ -13,8 +13,6 @@
 
 ## 协作流程
 
-第一次通过 GitHub 修改本项目的贡献者，请先阅读 [GitHub 修改教程](docs/github-contribution-tutorial.md)。
-
 1. 先在 Issues 或 Discussions 中搜索是否已有相同问题。
 2. Fork 本仓库，并从 `main` 创建独立分支：
    - 新功能：`feat/short-description`
